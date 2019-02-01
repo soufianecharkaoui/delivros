@@ -1,0 +1,33 @@
+<div class="row" *ngIf="categoryForm">
+  <div class="col-md-6">
+    <form #cform="ngForm" [formGroup]="categoryForm" (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input formControlName="name" id="name" class="form-control" type="text" required>
+        <br>
+        <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div *ngIf="name.errors.required">Name is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input formControlName="imageUrl" id="imageUrl" class="form-control" type="text" url required>
+        <br>
+        <div class="alert alert-danger" *ngIf="imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)">
+          <div *ngIf="imageUrl.errors.required">Image URL is required.</div>
+          <div *ngIf="imageUrl.errors.url">Please type a valid URL.</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="cform.invalid">Save</button>
+    </form>
+  </div>
+  <div class="col-md-6" *ngIf="categoryForm.value.name">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{categoryForm.value.imageUrl}}">
+      <div class="card-body">
+        <h5 class="card-title">{{ categoryForm.value.name }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+

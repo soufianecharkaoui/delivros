@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/delivros",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "delivros/index.html"
+      }
+    ]
+  }
+}

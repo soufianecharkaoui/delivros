@@ -1,0 +1,74 @@
+<div class="row" *ngIf="mealForm">
+  <div class="col-md-6">
+    <form #mform="ngForm" [formGroup]="mealForm" (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input formControlName="title" id="title" class="form-control" type="text" required>
+        <br>
+        <div class="alert alert-danger" *ngIf="title.invalid && (title.dirty || title.touched)">
+          <div *ngIf="title.errors.required">Title is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <input formControlName="price" min="0" id="price" class="form-control" type="number" [min]="0" required>
+          <div class="input-group-append">
+            <span class="input-group-text">M.A.D</span>
+          </div>
+        </div>
+        <br>
+        <div class="alert alert-danger" *ngIf="price.invalid && (price.dirty || price.touched)">
+          <div *ngIf="price.errors.required">Price is required.</div>
+          <div *ngIf="price.errors.min">Price should be greater or equal to 0.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="restaurant">Restaurant</label>
+        <select formControlName="restaurant" id="restaurant" class="form-control" required>
+          <option value=""></option>
+          <option *ngFor="let resto of restos" [value]="resto.name">
+            {{ resto.name }}
+          </option>
+        </select>
+        <br>
+        <div class="alert alert-danger" *ngIf="restaurant.invalid && (restaurant.dirty || restaurant.touched)">
+          <div *ngIf="restaurant.errors.required">Restaurant is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select formControlName="category" id="category" class="form-control" required>
+          <option value=""></option>
+          <option *ngFor="let category of categories" [value]="category.name">
+            {{ category.name }}
+          </option>
+        </select>
+        <br>
+        <div class="alert alert-danger" *ngIf="category.invalid && (category.dirty || category.touched)">
+          <div *ngIf="category.errors.required">Category is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input formControlName="imageUrl" id="imageUrl" class="form-control" type="text" url required>
+        <br>
+        <div class="alert alert-danger" *ngIf="imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)">
+          <div *ngIf="imageUrl.errors.required">Image URL is required.</div>
+          <div *ngIf="imageUrl.errors.url">Please type a valid URL.</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="mform.invalid">Save</button>
+    </form>
+  </div>
+  <div class="col-md-6" *ngIf="mealForm.value.title">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{mealForm.value.imageUrl}}">
+      <div class="card-body">
+        <h5 class="card-title">{{ mealForm.value.title }}</h5>
+        <p class="card-text">{{ mealForm.value.price | currency:'MAD':'code' }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+

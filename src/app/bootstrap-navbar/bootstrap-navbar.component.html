@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light py-4 mb-4">
+  <a class="navbar-brand" routerLink="/">Delivros</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"  (click)="isCollapsed = !isCollapsed"
+  [attr.aria-expanded]="!isCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/order-list">Order list</a>
+      </li>
+      <ng-template #anonymousUser>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+      </ng-template>
+      <li *ngIf="appUser; else anonymousUser" class="nav-item">
+        <a class="nav-link dropdown-toggle" [matMenuTriggerFor]="menu">
+          {{ appUser.name }}
+        </a>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/orders-history">All orders</button>
+          <ng-container *ngIf="appUser.isAdmin">
+            <button mat-menu-item routerLink="/admin/orders">Manage orders</button>
+            <button mat-menu-item routerLink="/admin/meals">Manage Meals</button>
+            <button mat-menu-item routerLink="/admin/categories">Manage Categories</button>
+            <button mat-menu-item routerLink="/admin/restos">Manage Restaurants</button>
+          </ng-container>
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      </li>
+    </ul>
+  </div>
+</nav> 
