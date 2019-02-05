@@ -1,3 +1,4 @@
+import { CategoryComponent } from './../category/category.component';
 import { CategorydetailComponent } from './../admin/categorydetail/categorydetail.component';
 import { RestodetailComponent } from './../admin/restodetail/restodetail.component';
 import { MealdetailComponent } from './../admin/mealdetail/mealdetail.component';
@@ -19,16 +20,25 @@ import { AdminRestosComponent } from '../admin/admin-restos/admin-restos.compone
 import { RestosFormComponent } from '../admin/restos-form/restos-form.component';
 import { AdminOrdersComponent } from '../admin/admin-orders/admin-orders.component';
 import { LoginComponent } from '../login/login.component';
+import { RestosComponent } from '../restos/restos.component';
 
 
 export const routes: Routes = [
     { 
         path: '', 
-        component: HomeComponent 
+        component: RestosComponent 
+    },
+    {
+        path: 'meals/:restoId/:categoryId',
+        component: CategoryComponent
     },
     { 
-        path: 'meals', 
+        path: 'meals/:id', 
         component: MealsComponent 
+    },
+    {
+        path: 'meals',
+        component: MealsComponent
     },
     { 
         path: 'order-list', 

@@ -45,6 +45,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { RestosComponent } from './restos/restos.component';
+import { MatCardModule } from '@angular/material/card';
+import { CategoryComponent } from './category/category.component';
+import { MatListModule } from '@angular/material/list';
+import { MealCardComponent } from './meal-card/meal-card.component';
+import { OrderListService } from './services/order-list.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +72,10 @@ import { MatButtonModule } from '@angular/material/button';
     RestosFormComponent,
     MealdetailComponent,
     RestodetailComponent,
-    CategorydetailComponent
+    CategorydetailComponent,
+    RestosComponent,
+    CategoryComponent,
+    MealCardComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +95,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatSortModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatListModule
   ],
   providers: [
     AuthService,
@@ -95,7 +106,8 @@ import { MatButtonModule } from '@angular/material/button';
     AdminAuthGuardService,
     CategoryService,
     RestoService,
-    MealService,,
+    MealService,
+    OrderListService,
     {
       provide: 'BaseURL',
       useValue: baseURL

@@ -1,0 +1,15 @@
+<mat-card class="example-card">
+  <img mat-card-image src="{{meal.imageUrl}}" *ngIf="meal.imageUrl" alt="{{meal.title}}" height="250px;">
+  <mat-card-content>
+    <p>
+      {{ meal.title }}
+    </p>
+    <p>
+      {{ meal.price | currency:'MAD':'code' }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="addToList(meal)" class="btn btn-danger btn-block">Add to cart</button>
+  </mat-card-actions>
+</mat-card>
+

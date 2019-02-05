@@ -1,9 +1,11 @@
+import { Category } from './../models/category';
 import { baseURL } from './../models/baseurl';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 import { Meal } from '../models/meal';
 import { Observable } from 'rxjs';
+import { Resto } from '../models/resto';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +40,12 @@ export class MealService {
     return this.http.delete<Meal>(baseURL + 'meals/' + id, this.httpOptions);
   }
 
+  getMealsByResto(resto: Resto): Observable<Meal[]> {
+    return this.http.get<Meal[]>(baseURL + 'meals?restaurant=' + resto.name);
+  }
+
+  getMealsByCategory(resto: Resto, category: Category): Observable<Meal[]> {
+    return this.http.get<Meal[]>(baseURL + 'meals?restaurant=' + resto.name + '&category=' + category.name)
+  }
 }
  
